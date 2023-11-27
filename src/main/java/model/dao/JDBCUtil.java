@@ -226,4 +226,14 @@ public class JDBCUtil {
 	public void printDataSourceStats() {
 		connMan.printDataSourceStats();
 	}
+
+	public Connection getConnection() {
+	    Connection conn = null;
+	    try {
+	        conn = connMan.getConnection(); // ConnectionManager에서 getConnection 메서드를 호출하여 Connection을 가져옴
+	    } catch (Exception e) {
+	        e.printStackTrace();
+	    }
+	    return conn;
+	}
 }

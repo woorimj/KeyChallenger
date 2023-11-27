@@ -8,7 +8,7 @@ public class Post {
     private String activity;
     private String photo;
     private String review;
-    private String keyword;
+    private String keyword; // db에 이미 저장되어있음 =
     private Date postDate; 
     private int likeCount;
     private String likeId;
@@ -105,6 +105,15 @@ public class Post {
 
     public void setId(String id) {
         this.id = id;
+    }
+    
+    // 업데이트 시간 제한
+    public boolean canUpdatePost() {
+        // 현재 시간과 POSTDATE를 비교하여 수정 가능 여부를 판단하는 로직
+        long now = System.currentTimeMillis();
+        long postTime = postDate.getTime();
+        long oneDayInMillis = 24 * 60 * 60 * 1000; // 하루를 밀리초로 계산
+        return (now - postTime) <= oneDayInMillis;
     }
 }
 
