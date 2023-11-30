@@ -1,7 +1,7 @@
 package model;
 
 
-public class Manager {
+public class Memeber {
    private String id;
    private String pwd;
    private String nickName;
