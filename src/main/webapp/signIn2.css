@@ -1,0 +1,184 @@
+@import url("https://cdnjs.cloudflare.com/ajax/libs/meyer-reset/2.0/reset.min.css");
+* {
+  -webkit-font-smoothing: antialiased;
+  box-sizing: border-box;
+}
+html,
+body {
+  margin: 0px;
+  height: 100%;
+}
+/* a blue color as a generic focus style */
+button:focus-visible {
+  outline: 2px solid #4a90e2 !important;
+  outline: -webkit-focus-ring-color auto 5px !important;
+}
+a {
+  text-decoration: none;
+}
+@import url("https://fonts.googleapis.com/css?family=Orbitron:700");
+
+.element {
+  background-color: transparent;
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  width: 100%;
+}
+
+.element .div {
+  overflow: hidden;
+  background-image: url(./img/2.png);
+  background-size: cover;
+  background-position: 50% 50%;
+  width: 1440px;
+  height: 1024px;
+  position: relative;
+}
+
+.element .overlap {
+  position: absolute;
+  width: 1230px;
+  height: 1024px;
+  top: 0;
+  left: 0;
+  background-image: url(./img/7125201dfdf-1.png);
+  background-size: cover;
+  background-position: 50% 50%;
+}
+
+.element .button-signin {
+  position: absolute;
+  width: 218px;
+  height: 74px;
+  top: 921px;
+  left: 611px;
+  background-image: url(./img/signin-btn.png);
+  background-size: cover;
+  background-position: 50% 50%;
+}
+
+.element .overlap-group {
+  position: absolute;
+  width: 634px;
+  height: 848px;
+  top: 30px;
+  left: 403px;
+}
+
+.element .form {
+  position: absolute;
+  width: 632px;
+  height: 520px;
+  top: 328px;
+  left: 1px;
+}
+
+.element .birth {
+  position: absolute;
+  width: 634px;
+  height: 96px;
+  top: 424px;
+  left: 0;
+}
+
+.element .overlap-group-2 {
+  position: relative;
+  width: 632px;
+  height: 96px;
+  border-radius: 30px;
+}
+
+.element .id {
+  position: absolute;
+  width: 632px;
+  height: 96px;
+  top: 0;
+  left: 0;
+  background-color: #ffffff;
+  border-radius: 30px;
+}
+
+.element .rectangle {
+  position: relative;
+  width: 463px;
+  height: 79px;
+  top: 8px;
+  left: 159px;
+  background-color: #d9d9d9;
+  border-radius: 30px;
+}
+
+.element .text-wrapper {
+  position: absolute;
+  width: 134px;
+  height: 1px;
+  top: 47px;
+  left: 10px;
+  font-family: "Orbitron-Bold", Helvetica;
+  font-weight: 700;
+  color: #b3b3b3;
+  font-size: 35px;
+  text-align: center;
+  letter-spacing: 0;
+  line-height: 0.1px;
+}
+
+.element .gender {
+  position: absolute;
+  width: 634px;
+  height: 96px;
+  top: 318px;
+  left: 0;
+}
+
+.element .nickname {
+  position: absolute;
+  width: 634px;
+  height: 96px;
+  top: 212px;
+  left: 0;
+}
+
+.element .pwd {
+  position: absolute;
+  width: 634px;
+  height: 96px;
+  top: 106px;
+  left: 0;
+}
+
+.element .overlap-wrapper {
+  position: absolute;
+  width: 634px;
+  height: 96px;
+  top: 0;
+  left: 0;
+}
+
+.element .img {
+  position: absolute;
+  width: 200px;
+  height: 200px;
+  top: 134px;
+  left: 217px;
+  object-fit: cover;
+}
+
+.element .logo {
+  position: absolute;
+  width: 634px;
+  height: 177px;
+  top: 0;
+  left: 0;
+  object-fit: cover;
+}
+
+.element .union {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  top: 94px;
+  left: -7416px;
+  object-fit: cover;
+}
