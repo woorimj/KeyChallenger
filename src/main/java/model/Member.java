@@ -48,8 +48,8 @@ public class Member {
 	   return character;
    }
    public void setCharacter(String character) {
-	   
-   }
+   }   
+
    public int getStampCount() {
       return stampCount;
    }
