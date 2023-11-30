@@ -236,4 +236,9 @@ public class JDBCUtil {
 	    }
 	    return conn;
 	}
+
+	public void commitAndClose() {
+		// TODO Auto-generated method stub
+		
+	}
 }

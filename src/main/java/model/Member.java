@@ -1,14 +1,25 @@
 package model;
 
 
-public class Memeber {
+public class Member {
    private String id;
    private String pwd;
    private String nickName;
    private int birth;
    private int stampCount;
+   private String character;
    
-
+   
+   public Member(String id, String pwd, String nickName, int birth, int stampCount, String character) {
+	super();
+	this.id = id;
+	this.pwd = pwd;
+	this.nickName = nickName;
+	this.birth = birth;
+	this.stampCount = stampCount;
+	this.character = character;
+}
+   
    public String getId() {
       return id;
    }
@@ -32,6 +43,12 @@ public class Memeber {
    }
    public void setBirth(int birth) {
       this.birth = birth;
+   }
+   public String getCharacter() {
+	   return character;
+   }
+   public void setCharacter(String character) {
+	   
    }
    public int getStampCount() {
       return stampCount;
