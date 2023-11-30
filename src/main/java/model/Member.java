@@ -1,7 +1,7 @@
 package model;
 
 
-public class Memeber {
+public class Member {
    private String id;
    private String pwd;
    private String nickName;
