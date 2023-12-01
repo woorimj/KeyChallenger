@@ -16,7 +16,7 @@ public class MemberDAO {
     //회원 생성
     public int create(Member member) throws SQLException {
         String sql = "INSERT INTO MEMBER VALUES (?, ?, ?, ?, ?, ?)";
-        Object[] param = new Object[] { member.getId(), member.getPwd(), member.getNickname(),
+        Object[] param = new Object[] { member.getId(), member.getPwd(), member.getNickName(),
                 member.getBirth(), member.getCharacter(), member.getStampCount() };
         jdbcUtil.setSqlAndParameters(sql, param); // JDBCUtil에 insert문과 매개 변수 설정
 
@@ -27,7 +27,7 @@ public class MemberDAO {
             jdbcUtil.rollback();
             ex.printStackTrace();
         } finally {
-            jdbcUtil.commitAndClose(); // 트랜잭션 커밋 및 resource 반환
+            jdbcUtil.close(); // 트랜잭션 커밋 및 resource 반환
         }
         return 0;
     }
@@ -36,7 +36,7 @@ public class MemberDAO {
     public int update(Member member) throws SQLException {
         String sql = "UPDATE MEMBER " + "SET pwd=?, nickname=?, birth=?, character=?, stampCount=? "
                 + "WHERE id=?";
-        Object[] param = new Object[] { member.getPwd(), member.getNickname(), member.getBirth(),
+        Object[] param = new Object[] { member.getPwd(), member.getNickName(), member.getBirth(),
                 member.getCharacter(), member.getStampCount(), member.getId() };
         jdbcUtil.setSqlAndParameters(sql, param); // JDBCUtil에 update문과 매개 변수 설정
 
@@ -47,7 +47,7 @@ public class MemberDAO {
             jdbcUtil.rollback();
             ex.printStackTrace();
         } finally {
-            jdbcUtil.commitAndClose(); // 트랜잭션 커밋 및 resource 반환
+            jdbcUtil.close(); // 트랜잭션 커밋 및 resource 반환
         }
         return 0;
     }
@@ -64,7 +64,7 @@ public class MemberDAO {
             jdbcUtil.rollback();
             ex.printStackTrace();
         } finally {
-            jdbcUtil.commitAndClose(); // 트랜잭션 커밋 및 resource 반환
+            jdbcUtil.close(); // 트랜잭션 커밋 및 resource 반환
         }
         return 0;
     }
@@ -79,12 +79,12 @@ public class MemberDAO {
             ResultSet rs = jdbcUtil.executeQuery(); // query 실행
             if (rs.next()) { // 회원 정보 발견
                 Member member = new Member( // Member 객체를 생성하여 회원 정보를 저장
-                        memberId,
+                        rs.getString("id"),
                         rs.getString("pwd"),
                         rs.getString("nickname"),
-                        rs.getString("birth"),
-                        rs.getString("character"),
-                        rs.getString("stampCount"));
+                        rs.getInt("birth"),                        
+                        rs.getInt("stampCount"),
+                        rs.getString("character"));
                 return member;
             }
         } catch (Exception ex) {
@@ -106,12 +106,12 @@ public class MemberDAO {
             List<Member> memberList = new ArrayList<>(); // Member들의 리스트 생성
             while (rs.next()) {
                 Member member = new Member( // Member 객체를 생성하여 현재 행의 정보를 저장
-                        rs.getString("id"),
-                        rs.getString("pwd"),
-                        rs.getString("nickname"),
-                        rs.getString("birth"),ㄴ
-                        rs.getString("character"),
-                        rs.getString("stampCount"));
+                		 rs.getString("id"),
+                         rs.getString("pwd"),
+                         rs.getString("nickname"),
+                         rs.getInt("birth"),                        
+                         rs.getInt("stampCount"),
+                         rs.getString("character"));
                 memberList.add(member); // List에 Member 객체 저장
             }
             return memberList;
@@ -139,9 +139,9 @@ public class MemberDAO {
                             rs.getString("id"),
                             rs.getString("pwd"),
                             rs.getString("nickname"),
-                            rs.getString("birth"),
-                            rs.getString("character"),
-                            rs.getString("stampCount"));
+                            rs.getInt("birth"),                        
+                            rs.getInt("stampCount"),
+                            rs.getString("character"));
                     memberList.add(member);
                 } while ((rs.next()) && (--countPerPage > 0));
                 return memberList;
