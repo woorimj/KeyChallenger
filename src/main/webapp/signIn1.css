@@ -1,0 +1,118 @@
+@import url("https://cdnjs.cloudflare.com/ajax/libs/meyer-reset/2.0/reset.min.css");
+* {
+  -webkit-font-smoothing: antialiased;
+  box-sizing: border-box;
+}
+html,
+body {
+  margin: 0px;
+  height: 100%;
+}
+/* a blue color as a generic focus style */
+button:focus-visible {
+  outline: 2px solid #4a90e2 !important;
+  outline: -webkit-focus-ring-color auto 5px !important;
+}
+a {
+  text-decoration: none;
+}
+@import url("https://fonts.googleapis.com/css?family=Orbitron:600");
+
+.element {
+  background-color: transparent;
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  width: 100%;
+}
+
+.element .div {
+  overflow: hidden;
+  background-image: url(./img/1.png);
+  background-size: cover;
+  background-position: 50% 50%;
+  width: 1440px;
+  height: 1024px;
+  position: relative;
+}
+
+.element .overlap-group {
+  position: absolute;
+  width: 1230px;
+  height: 1024px;
+  top: 0;
+  left: 0;
+  background-image: url(./img/key.png);
+  background-size: cover;
+  background-position: 50% 50%;
+}
+
+.element .img {
+  position: absolute;
+  width: 250px;
+  height: 250px;
+  top: 469px;
+  left: 925px;
+  object-fit: cover;
+}
+
+.element .img-2 {
+  position: absolute;
+  width: 250px;
+  height: 250px;
+  top: 469px;
+  left: 595px;
+  object-fit: cover;
+}
+
+.element .img-3 {
+  position: absolute;
+  width: 250px;
+  height: 250px;
+  top: 469px;
+  left: 265px;
+  object-fit: cover;
+}
+
+.element .button-next {
+  position: absolute;
+  width: 218px;
+  height: 75px;
+  top: 921px;
+  left: 611px;
+  background-image: url(./img/next-btn.png);
+  background-size: cover;
+  background-position: 50% 50%;
+}
+
+.element .text-wrapper {
+  position: absolute;
+  height: 50px;
+  top: 342px;
+  left: 487px;
+  font-family: "Orbitron", Helvetica;
+  font-weight: 600;
+  color: #000000;
+  font-size: 40px;
+  text-align: center;
+  letter-spacing: 0;
+  line-height: normal;
+}
+
+.element .logo {
+  position: absolute;
+  width: 634px;
+  height: 177px;
+  top: 30px;
+  left: 403px;
+  object-fit: cover;
+}
+
+.element .union {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  top: 94px;
+  left: -5794px;
+  object-fit: cover;
+}
