@@ -1,0 +1,163 @@
+.div-wrapper {
+  background-color: transparent;
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  width: 100%;
+}
+
+.div-wrapper .div {
+  background-image: url(./img/image.png);
+  background-size: cover;
+  background-position: 50% 50%;
+  width: 1440px;
+  height: 1024px;
+  position: relative;
+}
+
+.div-wrapper .profile {
+  position: absolute;
+  width: 85px;
+  height: 85px;
+  top: 35px;
+  left: 1322px;
+  object-fit: cover;
+}
+
+.div-wrapper .overlap {
+  height: 912px;
+  top: 14px;
+  left: 28px;
+  position: absolute;
+  width: 1289px;
+}
+
+.div-wrapper .logo {
+  position: absolute;
+  width: 458px;
+  height: 128px;
+  top: 0;
+  left: 463px;
+  object-fit: cover;
+}
+
+.div-wrapper .overlap-group {
+  height: 908px;
+  top: 4px;
+  left: 0;
+  position: absolute;
+  width: 1289px;
+}
+
+.div-wrapper .rectangle {
+  position: absolute;
+  width: 1194px;
+  height: 769px;
+  top: 139px;
+  left: 95px;
+  background-color: #ffffff;
+  border-radius: 30px;
+  border: 3px solid;
+  border-color: #54b28f;
+}
+
+.div-wrapper .group {
+  position: absolute;
+  width: 1176px;
+  height: 291px;
+  top: 291px;
+  left: 96px;
+}
+
+.div-wrapper .id {
+  position: absolute;
+  width: 888px;
+  height: 291px;
+  top: 0;
+  left: 286px;
+  background-color: #d9d9d9;
+  border-radius: 20px;
+}
+
+.div-wrapper .text-wrapper {
+  position: absolute;
+  width: 257px;
+  height: 1px;
+  top: 145px;
+  left: 0;
+  font-family: "Orbitron-Bold", Helvetica;
+  font-weight: 700;
+  color: #b3b3b3;
+  font-size: 35px;
+  text-align: center;
+  letter-spacing: 0;
+  line-height: 0.1px;
+}
+
+.div-wrapper .group-2 {
+  position: absolute;
+  width: 1176px;
+  height: 291px;
+  top: 599px;
+  left: 96px;
+}
+
+.div-wrapper .group-3 {
+  position: absolute;
+  width: 1177px;
+  height: 113px;
+  top: 160px;
+  left: 95px;
+}
+
+.div-wrapper .id-2 {
+  width: 890px;
+  height: 113px;
+  left: 285px;
+  position: absolute;
+  top: 0;
+  background-color: #d9d9d9;
+  border-radius: 20px;
+}
+
+.div-wrapper .text-wrapper-2 {
+  position: absolute;
+  width: 258px;
+  height: 1px;
+  top: 56px;
+  left: 0;
+  font-family: "Orbitron-Bold", Helvetica;
+  font-weight: 700;
+  color: #b3b3b3;
+  font-size: 35px;
+  text-align: center;
+  letter-spacing: 0;
+  line-height: 0.1px;
+}
+
+.div-wrapper .turtle {
+  position: absolute;
+  width: 200px;
+  height: 200px;
+  top: 0;
+  left: 0;
+  object-fit: cover;
+}
+
+.div-wrapper .delete-btn {
+  position: absolute;
+  width: 130px;
+  height: 61px;
+  top: 944px;
+  left: 558px;
+  object-fit: cover;
+}
+
+.div-wrapper .small-save-btn {
+  position: absolute;
+  width: 130px;
+  height: 61px;
+  top: 944px;
+  left: 764px;
+  object-fit: cover;
+}
