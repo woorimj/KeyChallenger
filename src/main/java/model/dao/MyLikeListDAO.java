@@ -1,8 +1,5 @@
 package model.dao;
 
-import java.sql.Connection;
-import java.sql.PreparedStatement;
-import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List
@@ -18,121 +15,81 @@ public class MyLikeListDAO{
         jdbcUtil = new JDBCUtil();  // JDBCUtil 객체 생성 및 이용
     }
     
-    // 1. MyLikeList에서 id, postId를 받아오고, postId를 이용하여 Post에서 likeId를 받아옴
-    public String getLikeIdByMyLikeListId(char id, char postId) {
-        Connection conn = null;
-        PreparedStatement pstmt = null;
-        ResultSet rs = null;
-        String likeId = null;
-
+    
+    //MyLikeList 생성
+    public void create(MyLikeList myLikeList) throws SQLException {
+        String query = "INSERT INTO MyLikeList VALUES(ID, POSTID)"+
+                    "VALUES(?, ?)";
+        
+        jdbcUtil.setSqlAndParameters(query, new Object[] {
+                myLikeList.getId(),
+                myLikeList.getPostId()
+        });
+        
         try {
-            conn = jdbcUtil.getConnection();
-            String sql = "SELECT likeId FROM Post WHERE postId = ?";
-            pstmt = conn.prepareStatement(sql);
-            pstmt.setString(1, String.valueOf(postId));
-            rs = pstmt.executeQuery();
-
-            if (rs.next()) {
-                likeId = rs.getString("likeId");
+            int result = jdbcUtil.executeUpdate();
+            if (result > 0) {
+                System.out.println("MyLikeList 생성 완료");
+            } else {
+                System.out.println("MyLikeList 생성 실패");
+            }
+        } catch (SQLException e) { 
+            e.printStackTrace();
+        } catch (Exception e) {
+            e.printStackTrace();
+        } finally {
+            jdbcUtil.close();
+        }}
+    }
+    
+    //사용자의 인증 및 권한 검증이 필요할것 같은데 -> 컨트롤러에서
+    // 게시글 좋아요
+    public void likePost(String postId, String userId) {
+        String query = "UPDATE POST SET LIKECOUNT = LIKECOUNT + 1, LIKEID = CONCAT(LIKEID, ?) WHERE POST_ID = ?";
+        
+        // 사용자 ID를 좋아요한 사람 목록에 추가하기 위해 ','로 구분하여 연결합니다.
+        String likeIdToAdd = userId + ",";
+        
+        jdbcUtil.setSqlAndParameters(query, new Object[]{likeIdToAdd, postId});
+    
+        try {
+            int result = jdbcUtil.executeUpdate();
+            if (result > 0) {
+                System.out.println("게시글 좋아요");
+            } else {
+                System.out.println("좋아요 실패");
             }
         } catch (SQLException e) {
             e.printStackTrace();
+        } catch (Exception e) {
+            e.printStackTrace();
         } finally {
-            jdbcUtil.close(rs, pstmt, conn);
+            jdbcUtil.close();
         }
-
-        return likeId;
     }
-
-    // 2. 내가 좋아요를 누른 게시글들을 모아놓은 리스트 객체 생성
-    public List<MyLikeList> getMyLikeList(char id) {
-        List<MyLikeList> list = new ArrayList<>();
-        Connection conn = null;
-        PreparedStatement pstmt = null;
-        ResultSet rs = null;
-
+    
+    // 게시글 좋아요 삭제
+    public void unlikePost(String postId, String userId) {
+        String query = "UPDATE POST SET LIKECOUNT = LIKECOUNT - 1, LIKEID = REPLACE(LIKEID, ?, '') WHERE POST_ID = ?";
+        
+        // 사용자 ID를 좋아요한 사람 목록에서 제거합니다.
+        String likeIdToRemove = userId + ",";
+        
+        jdbcUtil.setSqlAndParameters(query, new Object[]{likeIdToRemove, postId});
+    
         try {
-            conn = jdbcUtil.getConnection();
-            String sql = "SELECT * FROM MyLikeList WHERE id = ?";
-            pstmt = conn.prepareStatement(sql);
-            pstmt.setString(1, String.valueOf(id));
-            rs = pstmt.executeQuery();
-
-            while (rs.next()) {
-                char postId = rs.getString("postId").charAt(0);
-                MyLikeList myLikeList = new MyLikeList(id, postId);
-                list.add(myLikeList);
+            int result = jdbcUtil.executeUpdate();
+            if (result > 0) {
+                System.out.println("좋아요 취소.");
+            } else {
+                System.out.println("좋아요 취소 실패.");
             }
         } catch (SQLException e) {
             e.printStackTrace();
+        } catch (Exception e) {
+            e.printStackTrace();
         } finally {
-            jdbcUtil.close(rs, pstmt, conn); // ResultSet, PreparedStatement, Connection 반환
-        }
-
-        return list;
-    }
-
-    // 3. likeId가 True인지 False인지 확인하여 반환
-    public boolean checkLike(String likeId) {
-        return likeId != null && likeId.equals("True");
-    }
-
-    // 4. 만약 checkLike의 결과가 False이면, likePost()라는 함수 안에서 likeId를 True로 바꾸고 postId의 게시글을 list에 add
-    public void likePost(char id, char postId) {
-        String likeId = getLikeIdByMyLikeListId(id, postId);
-        if (!checkLike(likeId)) {
-            Connection conn = null;
-            PreparedStatement pstmt = null;
-
-            try {
-                conn = jdbcUtil.getConnection();
-                String updateSql = "UPDATE Post SET likeId = 'True' WHERE postId = ?";
-                pstmt = conn.prepareStatement(updateSql);
-                pstmt.setString(1, String.valueOf(postId));
-                pstmt.executeUpdate();
-
-                // list에 추가
-                List<MyLikeList> myLikeList = getMyLikeList(id);
-                myLikeList.add(new MyLikeList(id, postId));
-            } catch (SQLException e) {
-                e.printStackTrace();
-            } finally {
-                jdbcUtil.close(pstmt, conn);
-            }
+            jdbcUtil.close();
         }
     }
-
-    // 5. 만약 checkLike의 결과가 True이면, unlikePost()라는 함수 안에서 likeId를 False로 바꾸고 postId의 게시글을 list에서 delete한다.
-    public void unlikePost(char id, char postId) {
-        String likeId = getLikeIdByMyLikeListId(id, postId);
-        if (checkLike(likeId)) {
-            Connection conn = null;
-            PreparedStatement pstmt = null;
-
-            try {
-                conn = jdbcUtil.getConnection();
-                String updateSql = "UPDATE Post SET likeId = 'False' WHERE postId = ?";
-                pstmt = conn.prepareStatement(updateSql);
-                pstmt.setString(1, String.valueOf(postId));
-                pstmt.executeUpdate();
-
-                //list에서 삭제
-                List<MyLikeList> myLikeList = getMyLikeList(id);
-                MyLikeList itemToRemove = null;
-                for (MyLikeList myLike : myLikeList) {
-                    if (myLike.getPostId() == postId) {
-                        itemToRemove = myLike;
-                        break;
-                    }
-                }
-                if (itemToRemove != null) {
-                    myLikeList.remove(itemToRemove);
-                }
-            } catch (SQLException e) {
-                e.printStackTrace();
-            } finally {
-                jdbcUtil.close(pstmt, conn);
-            }
-        }
     }
-}
