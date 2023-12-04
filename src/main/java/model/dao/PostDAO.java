@@ -101,7 +101,7 @@ public class PostDAO {
             jdbcUtil.close();
         }
     }
-    
+}
 //    // 사용자의 인증 및 권한 검증이 필요할것 같은데 -> 컨트롤러에서
 //    // 게시글 좋아요
 //    public void likePost(String postId, String userId) {
