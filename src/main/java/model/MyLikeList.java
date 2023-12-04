@@ -4,7 +4,7 @@ public class MyLikeList {
     private char id;
     private char postId;
     
-    public MyLikeList {} //기본 생성자
+    public MyLikeList() {} //기본 생성자
     
     public MyLikeList (char id, char postId) {
         this.id = id;
