@@ -3,7 +3,7 @@
 <html>
 <head>
     <link rel="stylesheet" href="signIn1.css" />
-    <title>캐릭터 선택</title>
+    <title> 캐릭터 선택 </title>
 </head>
 <body>
     <div class="element">
